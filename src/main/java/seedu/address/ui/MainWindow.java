@@ -52,6 +52,9 @@ public class MainWindow extends UiPart<Region> {
     private StackPane commandBoxPlaceholder;
 
     @FXML
+    private MenuItem myProfileItem;
+
+    @FXML
     private MenuItem helpMenuItem;
 
     @FXML
@@ -181,6 +184,14 @@ public class MainWindow extends UiPart<Region> {
     GuiSettings getCurrentGuiSetting() {
         return new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
+    }
+
+    /**
+     * Opens the profile window
+     */
+    @FXML
+    public void handleMyProfile() {
+
     }
 
     /**
