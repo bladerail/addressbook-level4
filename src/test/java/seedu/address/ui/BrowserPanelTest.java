@@ -50,6 +50,7 @@ public class BrowserPanelTest extends GuiUnitTest {
 
         // associated web page of a person
         postNow(selectionChangedEventStub);
+        //@@author bladerail
         String urlString = GOOGLE_SEARCH_URL_PREFIX
                 + ALICE.getName().fullName.replaceAll(" ", "+") + GOOGLE_SEARCH_URL_SUFFIX;
         URL expectedPersonUrl = new URL(urlString);
@@ -60,6 +61,7 @@ public class BrowserPanelTest extends GuiUnitTest {
         assertTrue(expectedPersonUrl.equals(browserPanelHandle.getLoadedUrl())
                 || browserPanelHandle.getLoadedUrl().toExternalForm()
                 .contains(expectedCaptchaUrl.toExternalForm()));
+        //@@author hansiang93
     }
 
     @Test
@@ -74,6 +76,7 @@ public class BrowserPanelTest extends GuiUnitTest {
 
         // associated search page of a person
         postNow(searchSelectionEventStub);
+        //@@author bladerail
         String urlString = GOOGLE_SEARCH_URL_PREFIX
                 + ALICE.getName().fullName.replaceAll(" ", "+") + GOOGLE_SEARCH_URL_SUFFIX;
         URL expectedPersonUrl = new URL(urlString);
@@ -84,18 +87,21 @@ public class BrowserPanelTest extends GuiUnitTest {
         assertTrue(expectedPersonUrl.equals(browserPanelHandle.getLoadedUrl())
                 || browserPanelHandle.getLoadedUrl().toExternalForm()
                 .contains(expectedCaptchaUrl.toExternalForm()));
+        //@@author hansiang93
     }
 
+    //@@author bladerail
     /**
      * Returns the string format of a captcha URL
      * @param urlString
      * @return
      */
     private String getCaptchaUrl(String urlString) {
-        urlString = urlString.replaceAll("\\+", "%2B");
-        urlString = urlString.replaceAll("\\?", "%3F");
-        urlString = urlString.replaceAll("\\=", "%3D");
-        urlString = urlString.replaceAll("\\&", "%26");
-        return urlString;
+        String updatedUrlString = urlString.replaceAll("\\+", "%2B")
+                .replaceAll("\\?", "%3F")
+                .replaceAll("\\=", "%3D")
+                .replaceAll("\\&", "%26");
+        return updatedUrlString;
     }
+    //@@author hansiang93
 }

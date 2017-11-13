@@ -189,6 +189,7 @@ public abstract class AddressBookSystemTest {
         URL expectedUrl;
         URL expectedCaptchaUrl;
         try {
+            //@@author bladerail
             String urlString = GOOGLE_SEARCH_URL_PREFIX + selectedCardName.replaceAll(" ", "+")
                     + GOOGLE_SEARCH_URL_SUFFIX;
             urlString = urlString.replaceAll("\\+", "%2B");
@@ -206,6 +207,7 @@ public abstract class AddressBookSystemTest {
         assertTrue(expectedUrl.equals(getBrowserPanel().getLoadedUrl())
                 || getBrowserPanel().getLoadedUrl().toExternalForm()
                 .contains(expectedCaptchaUrl.toExternalForm()));
+        //@@author
 
         assertEquals(expectedSelectedCardIndex.getZeroBased(), getPersonListPanel().getSelectedCardIndex());
     }
