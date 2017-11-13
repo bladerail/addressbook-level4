@@ -1,5 +1,7 @@
 package guitests.guihandles;
 
+import static seedu.address.ui.BrowserPanel.GOOGLE_SEARCH_CAPTCHA_PREFIX;
+
 import java.net.URL;
 
 import guitests.GuiRobot;
@@ -52,7 +54,18 @@ public class BrowserPanelHandle extends NodeHandle<Node> {
      * {@code rememberUrl()} call.
      */
     public boolean isUrlChanged() {
-        return !lastRememberedUrl.equals(getLoadedUrl());
+        if (!lastRememberedUrl.equals(getLoadedUrl())) {
+            String urlString = lastRememberedUrl.toExternalForm();
+            urlString = urlString.replaceAll("\\+", "%2B")
+                    .replaceAll("\\?", "%3F")
+                    .replaceAll("\\=", "%3D")
+                    .replaceAll("\\&", "%26");
+            String expectedCaptchaUrl = GOOGLE_SEARCH_CAPTCHA_PREFIX + urlString;
+
+            return !getLoadedUrl().toExternalForm().contains(expectedCaptchaUrl);
+        } else {
+            return false;
+        }
     }
 
     /**
